@@ -1,8 +1,10 @@
 const express = require('express');
 const fs = require('fs')
 const cors = require('cors');
+var bodyParser = require('body-parser')
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 const port = 3000;
 
@@ -38,6 +40,14 @@ app.get('/eventdata', (req, res) => {
 
 app.get('/userdata', (req, res) => {
   res.json(read_db('data/users.json'))
+})
+
+
+app.post('/recordevent', (req, res)=>{
+  console.log(req.body)
+  let cur_data = read_db('data/events.json')
+  cur_data.events_data.push(req.body);
+  write_db('data/events.json', cur_data);
 })
 
 
