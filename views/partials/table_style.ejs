@@ -1,0 +1,56 @@
+<style>
+    .tabulator-row .tabulator-cell {
+        border-right: none;
+        line-height: 30px;
+        height: 100%;
+        padding: 10px;
+    }
+.tabulator-tableHolder{
+    height: fit-content!important
+}
+.tabulator-row{
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+}
+.tabulator-col{
+    border-right: 1px solid #bbb;;
+}
+#pages{
+    margin: 20px auto 40px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#table{
+    width: 90%;
+    margin: 0 auto;
+}
+h3{
+    margin: 0 8px;
+    font-family: Open Sans;
+    user-select: none;
+    cursor: pointer;
+}
+.selected{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+#table{
+    font-family: Open Sans;
+}
+.tabulator-row, .tabulator-row.tabulator-row-even, .tabulator .tabulator-header .tabulator-col{
+    background: white;
+}
+
+.tabulator-row:hover{
+    background: #f5f5f5!important;
+}
+
+.tabulator-col:hover .tabulator-arrow{
+    filter: brightness(0.5);
+}
+
+.tabulator-col:hover{
+    background: white!important;
+}
+</style>
