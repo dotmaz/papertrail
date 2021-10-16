@@ -8,6 +8,15 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 const port = 3000;
 
+function read_file(url){
+  let res;
+  try{
+      res = fs.readFileSync(url).toString();
+  }catch(e){
+      return false;
+  }
+  return res;
+}
 function read_db(url){
   let res;
   try{
@@ -27,11 +36,11 @@ function write_db(url, new_db){
 }
 
 app.get('/', (req, res) => {
-  res.render('pages/events', {});
+  res.render('pages/events', {})
 });
 
 app.get('/users', (req, res) => {
-  res.render('pages/users');
+  res.render('pages/users')
 })
 
 app.get('/eventdata', (req, res) => {
@@ -42,14 +51,17 @@ app.get('/userdata', (req, res) => {
   res.json(read_db('data/users.json'))
 })
 
+app.get('/papertrail', (req, res) => {
+  res.contentType('application/javascript')
+  res.end(read_file("scripts/Papertrail.js"))
+})
 
 app.post('/recordevent', (req, res)=>{
   console.log(req.body)
   let cur_data = read_db('data/events.json')
-  cur_data.events_data.push(req.body);
-  write_db('data/events.json', cur_data);
+  cur_data.events_data.push(req.body)
+  write_db('data/events.json', cur_data)
 })
-
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`)
