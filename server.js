@@ -5,6 +5,7 @@ var bodyParser = require('body-parser')
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 const port = 3000;
 
@@ -49,11 +50,6 @@ app.get('/eventdata', (req, res) => {
 
 app.get('/userdata', (req, res) => {
   res.json(read_db('data/users.json'))
-})
-
-app.get('/papertrail', (req, res) => {
-  res.contentType('application/javascript')
-  res.end(read_file("scripts/Papertrail.js"))
 })
 
 app.post('/recordevent', (req, res)=>{
