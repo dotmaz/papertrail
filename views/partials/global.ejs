@@ -5,7 +5,9 @@
 </head>
 <style>
     :root{
-        --primary-color: #54de79;
+        /* --primary-color: #54de79; */
+        --primary-gray: #444;
+        --primary-color: #6bd6a1;
     }
     *{
         box-sizing: border-box;
@@ -13,5 +15,44 @@
     body{
         margin: 0;
         font-family: Open Sans;
+    }
+    .error-modal{
+        position: relative;
+        width: 80%;
+        background: cadetblue;
+        margin: 10px auto 50px auto;
+        border-radius: 5px;
+        opacity: 0;
+        padding: 10px 0;
+
+        animation: bounceIn .5s .2s forwards;
+    }
+    @keyframes bounceIn{
+        0%{opacity: 0; top: -5px;}
+        100%{opacity: .8; top: 0px;}
+    }
+    .error-close-btn{
+        color: white;
+        font-size: 25px;
+        position: absolute;
+        top: 0px;
+        left: 18px;
+        user-select: none;
+        cursor: pointer;
+    }
+    .error-text{
+        font-family: Open Sans!important;
+        color: white;
+        width: 90%;
+        height: fit-content;
+        font-size: 14px;
+        overflow: hidden;
+        margin-left: 50px;
+    }
+
+    .error-text a{
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 1px;
     }
 </style>

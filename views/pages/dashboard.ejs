@@ -3,7 +3,6 @@
 
 <%- include('../partials/error'); %>
 
-<div id='users-container'></div>
 
 <style>
     #users-container{
@@ -29,8 +28,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        /* background: linear-gradient(to bottom right, var(--primary-color), #84d99b); */
-        background: linear-gradient(to bottom right, var(--primary-color), #9dd4b8);
+        background: linear-gradient(to bottom right, var(--primary-color), #84d99b);
 
         box-shadow: 5px 2px 20px 1px rgba(0,0,0,.2);
     }
@@ -57,6 +55,7 @@
 
 </style>
 <script>
+/*
 let user_card_html = 
 `
 <div class='user' id='user-{{email}}'>
@@ -82,7 +81,7 @@ fetch('http://localhost:3000/userdata').then(res=>res.json()).then(user_data=>{
     }
     document.getElementById('users-container').innerHTML = injected_html;
 })
-
+*/
 function userFriendlyTime(time){
     let now = new Date();
     let seconds = parseInt((now - time)/1000);

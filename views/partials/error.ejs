@@ -1,0 +1,13 @@
+<div class='error-modal'>
+    <div class='error-close-btn' onclick="hideBugReport()">x</div>
+    <div class='error-text'>Papertrail is in beta. Please <a href='/bugreport'>report</a> any issues you run into.</div>
+</div>
+<script>
+if(window.localStorage.getItem('hide-bug-report')){
+    document.getElementsByClassName('error-modal')[0].style.display = 'none';
+}
+function hideBugReport(){
+    document.getElementsByClassName('error-modal')[0].style.display = 'none';
+    window.localStorage.setItem('hide-bug-report', 'true')
+}
+</script>

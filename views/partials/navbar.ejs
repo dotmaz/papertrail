@@ -1,25 +1,44 @@
 <div id='tabs'>
     <div id='logo'><span style="margin-right: 2px; color: var(--primary-color)">paper</span>trail</div>
-    <h3 id='events-tab' class='tab' onclick='goToEvents()'>Events</h3>
-    <h3 id='users-tab' class='tab' onclick='goToUsers()'>Users</h3>
-    <div id='settings-tab' onclick='goToSettings()'></div>
+    <div class='container' style='position: absolute;left: calc(50% - 75px);'>
+        <h3 id='users-tab' class='tab' onclick='goToUsers()'>Users</h3>
+        <h3 id='events-tab' class='tab' onclick='goToEvents()'>Events</h3>
+    </div>
+    <div class='container'>
+        <div id='projects-tab' onclick='goToDashboard()'>Switch project</div>
+        <div id='settings-tab' onclick='goToSettings()'></div>
+    </div>
 </div>
 
 <script>
-    let page = window.location.pathname == '/users' ? 'users' : 'events'
-    document.getElementById(page + '-tab').classList.add('selected')
-    document.getElementById(page + '-tab').onclick = ""
+    let page = 'users';
+
+    if(window.location.pathname == '/dashboard'){
+        page = 'dashboard'
+    }
+    if(window.location.pathname == '/events'){
+        page = 'events'
+    }
+
+    if(page != 'dashboard'){
+        document.getElementById(page + '-tab').classList.add('selected')
+        document.getElementById(page + '-tab').onclick = ""
+    }
 
     function goToUsers(){
         document.location.href = '/users'
     }
     
     function goToEvents(){
-        document.location.href = '/'
+        document.location.href = '/events'
     }
 
     function goToSettings(){
 
+    }
+
+    function goToDashboard(){
+        document.location.href = '/dashboard'
     }
 </script>
 
@@ -30,7 +49,8 @@
     #tabs{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
 
         height: 80px;
         width: calc(100% - 60px);
@@ -48,26 +68,26 @@
         cursor: pointer;
         border-radius: 2px;
         padding: 4px 8px 5px 8px;
-        font-size: 16px;
+        font-size: 17px;
         background: transparent;
         color: var(--primary-color);
         margin: auto 6px;
     }
     #settings-tab{
-        position: absolute;
-        top: 35px;
-        right: var(--navbar-inset);
         width: 30px;
         height: 30px;
         background: url("/settings_cog.png");
         background-size: contain!important;
-        filter: contrast(1000%) invert(100%) sepia(100%) saturate(10000%) hue-rotate(50deg) saturate(0.6) brightness(.95);
+        opacity: .75;
         cursor: not-allowed;
+        margin-left: 20px;
+    }
+    #projects-tab{
+        user-select: none;
+        cursor: pointer;
+        font-size: 15px;
     }
     #logo{
-        position: absolute;
-        top: 35px;
-        left: var(--navbar-inset);
         width: 35px;
         height: 35px;
         background: url(/paperplane.png);
@@ -77,6 +97,13 @@
         line-height: 25px;
         user-select: none;
         font-family: Open Sans!important;
+        color: var(--primary-gray);
+    }
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
     .selected{
         background: var(--primary-color);
