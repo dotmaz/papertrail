@@ -1,19 +1,2 @@
-{
-    "events_data": [
-        {
-            "name": "Mazin Abubeker",
-            "email": "mazinabubeker1123@gmail.com",
-            "group": "admin"
-        },
-        {
-            "name": "Nithin Kumar",
-            "email": "nithinkumar@gmail.com",
-            "group": "user"
-        },
-        {
-            "name": "Kunal Patel",
-            "email": "kp95@gmail.com",
-            "group": "user"
-        }
-    ]
-}
+{"mazinabubeker1123@gmail.com":{"attributes":{"firstName":"Mazin", "lastName": "Abubeker"}},
+"biohazard0426@gmail.com":{"attributes":{"firstName":"John", "lastName": "Lee"}}}

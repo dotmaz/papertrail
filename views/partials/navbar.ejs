@@ -1,0 +1,85 @@
+<div id='tabs'>
+    <div id='logo'><span style="margin-right: 2px; color: var(--primary-color)">paper</span>trail</div>
+    <h3 id='events-tab' class='tab' onclick='goToEvents()'>Events</h3>
+    <h3 id='users-tab' class='tab' onclick='goToUsers()'>Users</h3>
+    <div id='settings-tab' onclick='goToSettings()'></div>
+</div>
+
+<script>
+    let page = window.location.pathname == '/users' ? 'users' : 'events'
+    document.getElementById(page + '-tab').classList.add('selected')
+    document.getElementById(page + '-tab').onclick = ""
+
+    function goToUsers(){
+        document.location.href = '/users'
+    }
+    
+    function goToEvents(){
+        document.location.href = '/'
+    }
+
+    function goToSettings(){
+
+    }
+</script>
+
+<style>
+    :root{
+        --navbar-inset: 60px;
+    }
+    #tabs{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        height: 80px;
+        width: calc(100% - 60px);
+        padding: 0;
+        margin: 10px auto 50px auto;
+
+        border-bottom: 1px solid #eee;
+    }
+    .tab{
+        font-family: Lato!important;
+        height: fit-content;
+        width: fit-content;
+        font-family: Open Sans;
+        user-select: none;
+        cursor: pointer;
+        border-radius: 2px;
+        padding: 4px 8px 5px 8px;
+        font-size: 16px;
+        background: transparent;
+        color: var(--primary-color);
+        margin: auto 6px;
+    }
+    #settings-tab{
+        position: absolute;
+        top: 35px;
+        right: var(--navbar-inset);
+        width: 30px;
+        height: 30px;
+        background: url("/settings_cog.png");
+        background-size: contain!important;
+        filter: contrast(1000%) invert(100%) sepia(100%) saturate(10000%) hue-rotate(50deg) saturate(0.6) brightness(.95);
+        cursor: not-allowed;
+    }
+    #logo{
+        position: absolute;
+        top: 35px;
+        left: var(--navbar-inset);
+        width: 35px;
+        height: 35px;
+        background: url(/paperplane.png);
+        background-size: contain!important;
+        font-size: 30px;
+        text-indent: 50px;
+        line-height: 25px;
+        user-select: none;
+        font-family: Open Sans!important;
+    }
+    .selected{
+        background: var(--primary-color);
+        color: white;
+    }
+</style>

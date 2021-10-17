@@ -75,4 +75,16 @@ class Papertrail {
 
         });
     }
+
+    trail = function(usr, atr){
+        if(!usr || (typeof usr != "string" && typeof usr != "number") || (typeof atr != "object" && typeof atr != "undefined")) return
+        let eventData = {username: usr, attributes: atr}
+        fetch('http://localhost:3000/recorduser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData) // body data type must match "Content-Type" header
+        });
+    }
 }

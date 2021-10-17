@@ -55,8 +55,15 @@ app.get('/userdata', (req, res) => {
 app.post('/recordevent', (req, res)=>{
   console.log(req.body)
   let cur_data = read_db('data/events.json')
-  cur_data.events_data.push(req.body)
+  cur_data.data.push(req.body)
   write_db('data/events.json', cur_data)
+})
+
+app.post('/recorduser', (req, res)=>{
+  console.log(req.body)
+  let cur_data = read_db('data/users.json')
+  cur_data[req.body.username] = {attributes: req.body.attributes}
+  write_db('data/users.json', cur_data)
 })
 
 app.listen(port, () => {

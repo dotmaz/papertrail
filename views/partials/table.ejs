@@ -1,0 +1,93 @@
+<script>
+    function load_data(url){
+
+
+        fetch(url).then(reso=>reso.json()).then(rawdata=>{
+            var tabledata = rawdata.data;
+
+            var newColumns = [
+                {title:"Name", field:"name", sorter:"string"},
+                {title:"Browser", field:"browser", sorter:"string"},
+                {title:"City", field:"city", sorter:"string"},
+                {title:"Country", field:"country", sorter:"string"},
+                {title:"OS", field:"os", sorter:"string"},
+                {title:"Region", field:"region", sorter:"string"},
+                {title:"Time", field:"time", sorter:"string"},
+            ]
+
+            var table = new Tabulator("#table", {
+                data: tabledata, // Assign data to table
+                autoColumns: true, // Create columns from data field names
+                layout: "fitColumns", // Fit columns to width of table
+                resizableColumns: false,
+                rowClick:function(e, row){
+                console.log(row)
+                alert(row._row.data.name + ' at ' + row._row.data.time)
+            },
+            }); 
+            table.setColumns(newColumns)
+            console.log("Updated!")        
+
+        });
+    }
+
+</script>
+<style>
+    
+    
+    .tabulator-row .tabulator-cell {
+        border-right: none;
+        line-height: 30px;
+        height: 100%;
+        padding: 10px;
+    }
+    .tabulator-tableHolder{
+        height: fit-content!important
+    }
+    .tabulator-row{
+        border-bottom: 1px solid #eee;
+        height: 50px;
+    }
+    .tabulator-col-title{
+        color: black;
+        text-indent: 5px;
+    }
+
+    .tabulator-header{
+        margin-bottom: 10px;
+    }
+
+    .tabulator-header, .tabulator-headers{
+        border: none!important;
+    }
+
+    .tabulator .tabulator-header .tabulator-col{
+        border: none;
+    }
+
+    #table{
+        margin: 0 100px;
+        background: none;
+        border: none;
+    }
+    
+    .tabulator-row, .tabulator-row.tabulator-row-even, .tabulator .tabulator-header .tabulator-col{
+        background: white;
+    }
+
+    .tabulator-row:hover{
+        background: #f5f5f5!important;
+    }
+
+    .tabulator-col:hover .tabulator-arrow{
+        filter: brightness(0.5);
+    }
+
+    .tabulator-col:hover{
+        background: white!important;
+    }
+
+    .tabulator-cell[tabulator-field=name]{
+        font-weight: bold;
+    }
+</style>
