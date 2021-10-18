@@ -1,0 +1,26 @@
+<%- include('../partials/global'); %>
+<%- include('../partials/navbar'); %>
+
+<%- include('../partials/error'); %>
+
+<div id='user-container'>
+    <div id='left-container'>
+        <h1 class='user-name'></h1>
+    </div>
+    <div id='right-container'>
+        
+    </div>
+</div>
+
+<style>
+    #user-container{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    #left-container, #right-container{
+        width: 50%;
+        border: 1px solid black;
+    }
+</style>

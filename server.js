@@ -40,6 +40,10 @@ app.get('/', (req, res)=>{
   res.redirect('/users');
 })
 
+app.get('/user', (req, res) => {
+  res.render('pages/user')
+});
+
 app.get('/users', (req, res) => {
   res.render('pages/users')
 });
@@ -47,6 +51,7 @@ app.get('/users', (req, res) => {
 app.get('/events', (req, res) => {
   res.render('pages/events')
 })
+
 
 app.get('/dashboard', (req, res) => {
   res.render('pages/dashboard')

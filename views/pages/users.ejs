@@ -59,7 +59,7 @@
 <script>
 let user_card_html = 
 `
-<div class='user' id='user-{{email}}'>
+<div class='user' id='user-{{email}}' onclick="window.location.href = '/user?id={{email}}'">
     <a class='attribute name-attr'>{{name}}</a>
     <a class='attribute time-attr'>Last seen: {{time}}</a>
 </div>
