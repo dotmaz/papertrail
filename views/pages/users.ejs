@@ -13,40 +13,50 @@
         width: 100%;
         flex-flow: wrap;
         justify-content: center;
+
+        flex-direction: column;
+        align-items: center;
     }
 
     .user{
-        
-        width: 240px;
-        height: 140px;
-        background: var(--primary-color);
-        color: white;
-        border-radius: 3px;
+        position: relative;
         padding: 20px;
-        margin: 0 20px 40px 20px;
+        padding-left: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         cursor: pointer;
-        /* background: linear-gradient(to bottom right, var(--primary-color), #84d99b); */
-        background: linear-gradient(to bottom right, var(--primary-color), #9dd4b8);
+        width: 500px;
+        height: 50px;
+        align-items: flex-start;
+        background: none;
+        color: #222;
+        text-indent: 0px;
+        transition: text-indent .15s, background-color .15s;
 
-        box-shadow: 5px 2px 20px 1px rgba(0,0,0,.2);
+        border-bottom: 1px solid rgba(0,0,0,0.15)
+    }
+
+    .user:nth-child(1){
+        border-top: 1px solid rgba(0,0,0,0.15);
     }
 
     .user:hover{
-        filter: brightness(.95);
+        background-color: #f7f7f7;
+        text-indent: 5px;
     }
 
     .attribute{
         margin: 10px 0;
         user-select: none;
+
+        /**/
+        margin: 0;
     }
 
     .name-attr{
         font-size: 18px;
-        font-weight: bold;
+        /* font-weight: bold; */
     }
 
     .time-attr{
@@ -54,7 +64,9 @@
         opacity: 0.75;
     }
 
-
+    .empty-tag{
+        font-weight: normal;
+    }
 </style>
 <script>
 let user_card_html = 
@@ -64,21 +76,31 @@ let user_card_html =
     <a class='attribute time-attr'>Last seen: {{time}}</a>
 </div>
 `;
+let empty_users_html =
+`
+<h3 class='empty-tag'>No users here!</h3>
+`;
 
 fetch('http://localhost:3000/userdata').then(res=>res.json()).then(user_data=>{
     let injected_html = ``
-    for(let i = 0; i < Object.keys(user_data).length; i++){
-        let attr = user_data[Object.keys(user_data)[i%Object.keys(user_data).length]].attributes
+    let obj_keys = Object.keys(user_data)
+    let data_size = obj_keys.length
+    for(let i = 0; i < data_size; i++){
+        let attr = user_data[obj_keys[i%data_size]].attributes
 
 
-        let email = Object.keys(user_data)[i]
+        let email = obj_keys[i]
         let name = attr.firstName + ' ' + attr.lastName
         let time = userFriendlyTime(new Date(new Date().getTime() - parseInt(60000*Math.random()*4500)))
 
         injected_html += user_card_html.replace('{{name}}', name)
                                        .replace('{{time}}', time)
                                        .replace('{{email}}', email)
+                                       .replace('{{email}}', email)
                                     
+    }
+    if(data_size == 0){
+        injected_html = empty_users_html;
     }
     document.getElementById('users-container').innerHTML = injected_html;
 })

@@ -37,12 +37,8 @@ function write_db(url, new_db){
 }
 
 app.get('/', (req, res)=>{
-  res.redirect('/users');
+  res.redirect('/dashboard');
 })
-
-app.get('/user', (req, res) => {
-  res.render('pages/user')
-});
 
 app.get('/users', (req, res) => {
   res.render('pages/users')
@@ -52,10 +48,16 @@ app.get('/events', (req, res) => {
   res.render('pages/events')
 })
 
-
 app.get('/dashboard', (req, res) => {
   res.render('pages/dashboard')
 })
+
+
+app.get('/user', (req, res) => {
+  res.render('pages/user')
+});
+
+
 
 app.get('/eventdata', (req, res) => {
   res.json(read_db('data/events.json'))

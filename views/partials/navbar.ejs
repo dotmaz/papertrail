@@ -1,11 +1,11 @@
 <div id='tabs'>
-    <div id='logo'><span style="margin-right: 2px; color: var(--primary-color)">paper</span>trail</div>
+    <div id='logo'><span style="margin-right: 2px; color: var(--primary-color)"><span style='margin-right: 15px'>></span>paper</span>trail</div>
     <div class='container' style='position: absolute;left: calc(50% - 75px);'>
         <h3 id='users-tab' class='tab' onclick='goToUsers()'>Users</h3>
         <h3 id='events-tab' class='tab' onclick='goToEvents()'>Events</h3>
     </div>
     <div class='container'>
-        <div id='projects-tab' onclick='goToDashboard()'>Switch project</div>
+        <div id='dashboard-tab' class='tab' onclick='goToDashboard()'>Dashboard</div>
         <div id='settings-tab' onclick='goToSettings()'></div>
     </div>
 </div>
@@ -13,14 +13,20 @@
 <script>
     let page = 'users';
 
-    if(window.location.pathname == '/dashboard'){
-        page = 'dashboard'
+    if(window.location.pathname == '/user'){
+        page = 'user'
     }
     if(window.location.pathname == '/events'){
         page = 'events'
     }
+    if(window.location.pathname == '/dashboard'){
+        page = 'dashboard'
+    }
+    
 
-    if(page != 'dashboard'){
+
+
+    if(page == 'users' || page == 'events' || page == 'dashboard'){
         document.getElementById(page + '-tab').classList.add('selected')
         document.getElementById(page + '-tab').onclick = ""
     }
@@ -52,10 +58,10 @@
         justify-content: space-between;
         align-items: center;
 
-        height: 80px;
+        height: 90px;
         width: calc(100% - 60px);
         padding: 0;
-        margin: 10px auto 50px auto;
+        margin: 0px auto 50px auto;
 
         border-bottom: 1px solid #eee;
     }
@@ -70,8 +76,15 @@
         padding: 4px 8px 5px 8px;
         font-size: 17px;
         background: transparent;
-        color: var(--primary-color);
+        color: var(--primary-gray);
         margin: auto 6px;
+    }
+    .tab:hover{
+        background-color: rgba(0,0,0,.05);
+    }
+    .selected{
+        background-color: var(--primary-gray)!important;
+        color: white;
     }
     #settings-tab{
         width: 30px;
@@ -88,25 +101,16 @@
         font-size: 15px;
     }
     #logo{
-        width: 35px;
-        height: 35px;
-        background: url(/paperplane.png);
-        background-size: contain!important;
         font-size: 30px;
-        text-indent: 50px;
-        line-height: 25px;
+        text-indent: 20px;
         user-select: none;
         font-family: Open Sans!important;
-        color: var(--primary-gray);
+        color: var(--primary-gray-inverse);
     }
     .container{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-    }
-    .selected{
-        background: var(--primary-color);
-        color: white;
     }
 </style>

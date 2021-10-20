@@ -3,19 +3,14 @@
 
 <%- include('../partials/error'); %>
 
-<div id='user-container'>
-    <div id='left-container'>
-        <h1 class='user-name'></h1>
-    </div>
-    <div id='right-container'>
-        
-    </div>
-</div>
+<div id='user-container'></div>
 
 <style>
     #user-container{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 100%;
     }
 
@@ -24,3 +19,21 @@
         border: 1px solid black;
     }
 </style>
+
+<script>
+let user_html =
+`
+<h1 class='user-name'>{{name}}</h1>
+`
+fetch('http://localhost:3000/userdata').then(res=>res.json()).then(user_data=>{
+    let attr = user_data[new URLSearchParams(window.location.search).get('id')].attributes
+    user_html = user_html.replace('{{name}}', attr.firstName + ' ' + attr.lastName);
+    console.log(typeof attr);
+    for(const key of Object.keys(attr)){
+        user_html += `<h3>` + key + `: ` + attr[key] + `</h3>`;
+    }
+    document.getElementById('user-container').innerHTML = user_html;
+});
+
+
+</script>
