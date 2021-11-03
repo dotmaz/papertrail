@@ -1,3 +1,3 @@
 # Papertrail
 
-A user lifecycle management platform focused on delivering inuitive shareable data
+A user lifecycle management platform focused on delivering intuitive shareable data
